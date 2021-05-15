@@ -12,7 +12,18 @@ export default class MainMenu extends Phaser.Scene {
 
 	preload () {
         this.load.image('menu','assets/menu/menu.png');
-	}
+        this.load.image('about', 'assets/menu/Button_About.png');    
+        this.load.image('rules', 'assets/menu/Button_Rules.png');    
+        this.load.image('new', 'assets/menu/Button_New.png');    
+        this.load.image('history', 'assets/menu/Button_History.png');    
+        this.load.image('dog', 'assets/menu/dog.png');    
+        this.load.image('goat', 'assets/menu/goatonapole.jpg');    
+        this.load.image('back', 'assets/menu/Button_Back.png');    
+        this.load.image('team', 'assets/menu/Button_GOAT.png');    
+        this.load.image('tojam', 'assets/menu/Button_ToJam.png');    
+        this.load.image('credits', 'assets/menu/credits.png');    
+    
+    }
 
     create ()  {
         this.add.image(0, 0, 'menu').setOrigin(0, 0);
