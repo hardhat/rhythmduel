@@ -4,9 +4,6 @@
 
 export default class Actor extends Phaser.GameObjects.Sprite {
     constructor ({scene,x,y,texture,frame,health}) {
-        console.log('The passed Bout scene object');
-        console.log(scene);
-
         super(scene, x, y, texture, frame);
 
         this.scene = scene;

@@ -23,10 +23,7 @@ export default class Bout extends Phaser.Scene {
         var x=200;
         var y=400;
         var health=30;
-        console.log('creating player');
-        console.log(this.sys);
-        console.log('The Bout scene object');
-        console.log(this);
+
         this.player = new Player({scene:this, x: x, y: y, texture: this.stewie, frame:1, health: health});
         x=600;
         this.npc = new Npc({scene:this, x:x, y:y, texture: this.candy, frame:1, health: health});
