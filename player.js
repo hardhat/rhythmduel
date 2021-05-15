@@ -2,11 +2,16 @@
 
 // Listens for rhythm based commands and updates Actor class
 
-class Npc extends Phaser.Scene {
+class Player extends Phaser.Scene {
     constructor() {
         this.actor = new Actor();
     }
 
+    preload ()
+    {
+        
+    }
+    
     create() 
     {
         

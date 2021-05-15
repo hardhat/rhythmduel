@@ -9,6 +9,11 @@ class MainMenu extends Phaser.Scene {
         this.hud = new Hud();
     }
 
+    preload ()
+    {
+        
+    }
+
     create() 
     {
         // Load all assets here -- call out to actor to load the current player and enemy sprite sheets, hud for status

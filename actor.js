@@ -7,6 +7,11 @@ class Actor extends Phaser.Scene {
 
     }
 
+    preload ()
+    {
+        
+    }
+    
     create() 
     {
         // Load all assets here

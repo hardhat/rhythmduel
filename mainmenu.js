@@ -7,6 +7,11 @@ class MainMenu extends Phaser.Scene {
 
     }
 
+	preload ()
+	{
+		
+	}
+
     create() 
     {
         
