@@ -5,7 +5,7 @@
 
 export default class MainMenu extends Phaser.Scene {
     constructor() {
-        super({key: 'MainMenu'});
+        super('MainMenu');
 
         this.gamemode = false;
     }
@@ -16,9 +16,18 @@ export default class MainMenu extends Phaser.Scene {
 
     create ()  {
         this.add.image(0, 0, 'menu').setOrigin(0, 0);
+
+        // Should be replaced with gameObject.setInteractive(shape,callback) for buttons.
+        this.input.on('pointerup', function(pointer) {
+            var touchX = pointer.x;
+            var touchY = pointer.y;
+            
+            this.scene.start('Bout'); 
+        }, this);
     }
     
     update () {
         return;
     }
+
 }

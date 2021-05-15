@@ -7,9 +7,8 @@ import Hud from './hud.js'
 // Shows level background.  Stretch goal: scroll side to side
 
 export default class Bout extends Phaser.Scene {
-    constructor (game) {
-        super({key: 'Bout'});
-        this.game = game;
+    constructor () {
+        super('Bout');
     }
 
     preload ()
@@ -24,17 +23,21 @@ export default class Bout extends Phaser.Scene {
         var x=200;
         var y=400;
         var health=30;
-        var asset=this.stewie;
-        this.player = new Player({game, x, y, asset, health});
+        console.log('creating player');
+        console.log(this.sys);
+        console.log('The Bout scene object');
+        console.log(this);
+        this.player = new Player({scene:this, x: x, y: y, texture: this.stewie, frame:1, health: health});
         x=600;
-        asset = this.candy;
-        this.npc = new Npc({game, x, y, asset, health});
-        this.hud = new Hud({game: game, player: this.player, npc: this.npc});
+        this.npc = new Npc({scene:this, x:x, y:y, texture: this.candy, frame:1, health: health});
+        this.hud = new Hud({scene: this, player: this.player, npc: this.npc});
     }
 
     create () 
     {
-        // Load all assets here -- call out to actor to load the current player and enemy sprite sheets, hud for status
+        this.add.image(0, 0, 'sky').setOrigin(0, 0);
+        this.add.sprite(200, 400, this.player);
+        this.add.sprite(600, 400, this.npc);
     }
     
     update ()

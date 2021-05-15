@@ -1,7 +1,7 @@
 
 //import Phaser from './dist/phaser-arcade-physics.min.js'
-import Bout from './bout.js'
 import MainMenu from './mainmenu.js'
+import Bout from './bout.js'
 
 const config = {
 	type: Phaser.AUTO,

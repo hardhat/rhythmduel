@@ -3,21 +3,21 @@
 // Heads up display shows the status of each character.  What is their health meter?  What is their power up energy for a special move?
 
 export default class Hud extends Phaser.GameObjects.Group {
-    constructor ({game, player, npc}) {
-        super(game);
+    constructor ({scene, player, npc}) {
+        super(scene);
 
-        this.game=game;
+        this.scene=scene;
         this.player=player;
         this.npc=npc;
 
-        // this.bg = new Phaser.Image(this.game, 0, 0, 'hudBg');
+        // this.bg = new Phaser.Image(this.scene, 0, 0, 'hudBg');
         // this.width = 800;
-        // this.healthbar = new Phaser.Sprite(this.game, 2, 2, 'healthbar');
+        // this.healthbar = new Phaser.Sprite(this.scene, 2, 2, 'healthbar');
         // this.healthbar.scale.setTo(0.995, 11);
 
         // this.score = 0;
         // this.scoreLabel = 'Score: ';
-        // this.scoreText = new Phaser.Text(this.game, 20, 14, this.scoreLabel + this.score, {
+        // this.scoreText = new Phaser.Text(this.scene, 20, 14, this.scoreLabel + this.score, {
         //     font: '13px Verdana',
         //     fill: 'white',
         //     align: 'center'
