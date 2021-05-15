@@ -16,7 +16,7 @@ export default class Bout extends Phaser.Scene {
         this.load.image('sky', 'assets/example/sky.png');
         this.load.image('platform', 'assets/example/platform.png');
         this.load.image('star', 'assets/example/star.png');
-        
+
         this.stewie = this.load.spritesheet('stewie', 'assets/sprites/stewie.png', { frameWidth: 48, frameHeight: 48 });
         this.candy = this.load.spritesheet('candy', 'assets/sprites/candy.png', { frameWidth: 48, frameHeight: 48 });
 
@@ -30,15 +30,17 @@ export default class Bout extends Phaser.Scene {
         this.hud = new Hud({scene: this, player: this.player, npc: this.npc});
     }
 
-    create () 
+    create ()
     {
         this.add.image(0, 0, 'sky').setOrigin(0, 0);
         this.add.sprite(200, 400, this.player);
         this.add.sprite(600, 400, this.npc);
+        this.player.create();
     }
-    
+
     update ()
     {
+      this.player.update();
         // Use actor for the animated figures.  Each player or npc has an actor.  This updates the player + npc.
     }
 }
