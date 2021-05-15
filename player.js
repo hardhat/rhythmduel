@@ -1,8 +1,8 @@
 // Player character.
-//import Actor from './actor.js'
+import Actor from './actor.js'
 // Listens for rhythm based commands and updates Actor class
 
-class Player extends Actor {
+export default class Player extends Actor {
     constructor ({ game, x, y, asset, frame, health }) {
         super({ game, x, y, asset, frame, health });
         

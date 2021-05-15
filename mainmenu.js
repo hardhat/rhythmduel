@@ -3,9 +3,9 @@
 
 // Options from main menu: play, about (shows credits) as buttons.
 
-class MainMenu extends Phaser.State {
+export default class MainMenu extends Phaser.Scene {
     constructor() {
-        super();
+        super({key: 'MainMenu'});
 
         this.gamemode = false;
     }

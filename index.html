@@ -1,65 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <script src="dist/phaser-arcade-physics.min.js"></script>
-    <script src="hud.js"></script>
-    <script src="actor.js"></script>
-    <script src="player.js"></script>
-    <script src="npc.js"></script>
-    <script src="mainmenu.js"></script>
-    <script src="bout.js"></script>
-</head>
-<body>
-
-    <script>
-    //import Phaser from 'phaser-arcade-physics'
-    //import MainMenu from './mainmenu.js'
-    //import Bout from './bout.js'
-
-    var config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        physics: {
-            default: 'arcade',
-            arcade: {
-                gravity: { y: 200 }
-            }
-        },
-        scene: [ MainMenu, Bout ]
-    };
-
-    var game = new Phaser.Game(config);
-
-    // var mainmenu = new MainMenu();
-        
-    // var bout = new Bout();
-
-    // function preload ()
-    // {
-    //     mainmenu.preload();
-    //     bout.preload();
-    // }
-
-    // function create ()
-    // {
-    //     if(mainmenu.gamemode == false) {
-    //         mainmenu.create();
-    //     } else {
-    //         bout.create();
-    //     }
-    // }
-
-    // function update ()
-    // {
-    //     if(mainmenu.gamemode == false) {
-    //         mainmenu.update();
-    //     } else {
-    //         bout.update();
-    //     }
-    // }
-    </script>
-
-</body>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Disco Rhythm Game by Team Sushi</title>
+    </head>
+    <body>
+        <script src="./dist/phaser-arcade-physics.min.js"></script>
+        <script type="module" src="game.js"></script>
+    </body>
 </html>

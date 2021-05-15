@@ -2,7 +2,7 @@
 
 // Options from main menu: play, about (shows credits) as buttons.
 
-class Actor extends Phaser.Sprite {
+export default class Actor extends Phaser.GameObjects.Sprite {
     constructor ({game,x,y,asset,frame,health}) {
         super(game, x, y, asset, frame);
 

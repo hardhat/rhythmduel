@@ -2,7 +2,7 @@
 
 // Heads up display shows the status of each character.  What is their health meter?  What is their power up energy for a special move?
 
-class Hud extends Phaser.Group {
+export default class Hud extends Phaser.GameObjects.Group {
     constructor ({game, player, npc}) {
         super(game);
 

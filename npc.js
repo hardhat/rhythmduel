@@ -1,5 +1,5 @@
 // Non-Player character.
-//import Actor from './actor.js'
+import Actor from './actor.js'
 // Calculates AI and updates Actor class
 
 export default class Npc extends Actor {
