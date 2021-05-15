@@ -1,24 +1,15 @@
 // Non-Player character.
+//import Actor from './actor.js'
+// Calculates AI and updates Actor class
 
-// Listens for rhythm based commands and updates Actor class
-
-class Npc extends Phaser.Scene {
-    constructor() {
-        this.actor = new Actor();
+export default class Npc extends Actor {
+    constructor ({game,x,y,asset,frame,health}) {
+        super({game,x,y,asset,frame,health});
     }
 
-    preload ()
-    {
-        
-    }
-    
-    create() 
-    {
-        
-    }
     
     update ()
     {
-
+        // Update AI based movement of the NPC relative to the attacking player.
     }
 }

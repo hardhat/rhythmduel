@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+    <meta charset="utf-8"/>
+    <script src="dist/phaser-arcade-physics.min.js"></script>
+    <script src="hud.js"></script>
+    <script src="actor.js"></script>
+    <script src="player.js"></script>
+    <script src="npc.js"></script>
+    <script src="mainmenu.js"></script>
+    <script src="bout.js"></script>
 </head>
 <body>
 
     <script>
+    //import Phaser from 'phaser-arcade-physics'
+    //import MainMenu from './mainmenu.js'
+    //import Bout from './bout.js'
+
     var config = {
         type: Phaser.AUTO,
         width: 800,
@@ -16,44 +27,38 @@
                 gravity: { y: 200 }
             }
         },
-        scene: {
-            preload: preload,
-            create: create
-        }
+        scene: [ MainMenu, Bout ]
     };
 
     var game = new Phaser.Game(config);
 
-    function preload ()
-    {
-        this.load.image('sky', 'assets/example/sky.png');
-        this.load.image('platform', 'assets/example/platform.png');
-        this.load.image('star', 'assets/example/star.png');
-        this.load.spritesheet('dude', 'assets/example/dude.png', { frameWidth: 32, frameHeight: 48 });
-        this.load.spritesheet('monster', 'assets/example/dude.png', { frameWidth: 32, frameHeight: 48 });
+    // var mainmenu = new MainMenu();
         
-    }
+    // var bout = new Bout();
 
-    function create ()
-    {
-        this.add.image(400, 300, 'background');
+    // function preload ()
+    // {
+    //     mainmenu.preload();
+    //     bout.preload();
+    // }
 
-        var particles = this.add.particles('red');
+    // function create ()
+    // {
+    //     if(mainmenu.gamemode == false) {
+    //         mainmenu.create();
+    //     } else {
+    //         bout.create();
+    //     }
+    // }
 
-        var emitter = particles.createEmitter({
-            speed: 100,
-            scale: { start: 1, end: 0 },
-            blendMode: 'ADD'
-        });
-
-        var logo = this.physics.add.image(400, 100, 'logo');
-
-        logo.setVelocity(100, 200);
-        logo.setBounce(1, 1);
-        logo.setCollideWorldBounds(true);
-
-        emitter.startFollow(logo);
-    }
+    // function update ()
+    // {
+    //     if(mainmenu.gamemode == false) {
+    //         mainmenu.update();
+    //     } else {
+    //         bout.update();
+    //     }
+    // }
     </script>
 
 </body>
