@@ -14,12 +14,20 @@ export default class Bout extends Phaser.Scene {
     preload ()
     {
         this.load.image('sky', 'assets/example/sky.png');
-        this.load.image('platform', 'assets/example/platform.png');
-        this.load.image('star', 'assets/example/star.png');
+        
+        this.load.image('syllable-do','assets/hud/syllable-do.png');
+        this.load.image('syllable-wah','assets/hud/syllable-wah.png');
+        this.load.image('syllable-uhuh','assets/hud/syllable-uhuh.png');
+        this.load.image('syllable-katta','assets/hud/syllable-katta.png');
 
         this.stewie = this.load.spritesheet('stewie', 'assets/sprites/stewie.png', { frameWidth: 48, frameHeight: 48 });
         this.candy = this.load.spritesheet('candy', 'assets/sprites/candy.png', { frameWidth: 48, frameHeight: 48 });
-	}
+
+        this.load.audio('1', [ 'assets/syllables/DO_woman.wav', 'assets/syllables/DO_woman.mp3', 'assets/syllables/DO_woman.ogg' ]);
+        this.load.audio('2', [ 'assets/syllables/WAH_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
+        this.load.audio('3', [ 'assets/syllables/UHUH_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
+        this.load.audio('4', [ 'assets/syllables/KATTA_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
+    }
 	
     createAnim(texture)
     {
@@ -109,7 +117,38 @@ export default class Bout extends Phaser.Scene {
         this.npc = new Npc({scene: this, sprite: this.npcSprite, x:x, y:y, health: health});
         this.hud = new Hud({scene: this, player: this.player, npc: this.npc});
 
+        this.createSounds();
         this.player.create();
+    }
+
+    createSounds() {
+        this.syllable1 = this.sound.add('1');
+        this.syllable2 = this.sound.add('2');
+        this.syllable3 = this.sound.add('3');
+        this.syllable4 = this.sound.add('4');
+        console.log('Do Wa Uhuh Katta');
+    
+        this.input.keyboard.on('keydown-SPACE', function () {
+            console.log("Quiet.");
+            this.sound.stopAll();
+        }, this);
+    }
+
+    showSyllable(syllable,pos) {
+        const posArray = [{x: 150,y: 300},{x:200,y:350},{x:150,y:300},{x:200,y:350}];
+
+        var popup = this.add.sprite(posArray[pos].x, posArray[pos].y, 'syllable-'+syllable);
+
+        this.tweens.add({
+            targets: popup,
+            y: 75,
+            alpha: 0.05,
+            duration: 1200,
+            delay: 400
+        });
+        this.time.addEvent({ delay: 2000, callback: function() {
+            popup.destroy();
+        }, callbackScope: this, loop: false });
     }
 
     update ()

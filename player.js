@@ -13,27 +13,36 @@ export default class Player extends Actor {
     {
       this.comboCount = 0;
       this.comboString = "";
-      this.scene.input.keyboard.on('keydown-UP', function(event){
+      this.scene.input.keyboard.on('keydown-UP', function(event) {
         console.log('key1');
+        this.scene.showSyllable('do',this.comboString.length);
         this.comboCount += 1;
         this.comboString += "1";
+        this.scene.syllable1.play();
       }, this);
-      this.scene.input.keyboard.on('keydown-DOWN', function(event){
-        console.log('key2');
+      this.scene.input.keyboard.on('keydown-DOWN', function(event) {
+        console.log('key3');
+        this.scene.showSyllable('uhuh',this.comboString.length);
         this.comboCount += 1;
         this.comboString += "3";
+        this.scene.syllable3.play();
+
       }, this);
-      this.scene.input.keyboard.on('keydown-LEFT', function(event){
-        console.log('key3');
+      this.scene.input.keyboard.on('keydown-LEFT', function(event) {
+        console.log('key4');
+        this.scene.showSyllable('katta',this.comboString.length);
         this.comboCount += 1;
         this.comboString += "4";
+        this.scene.syllable4.play();
       }, this);
-      this.scene.input.keyboard.on('keydown-RIGHT', function(event){
-        console.log('key4');
+      this.scene.input.keyboard.on('keydown-RIGHT', function(event) {
+        console.log('key2');
+        this.scene.showSyllable('wah',this.comboString.length);
         this.comboCount += 1;
         this.comboString += "2";
+        this.scene.syllable2.play();
       }, this);
-      this.scene.input.keyboard.on('keydown-C', function(event){
+      this.scene.input.keyboard.on('keydown-C', function(event) {
         console.log(this.comboCount);
         if(this.comboCount == 4){
           console.log(this.comboString);
