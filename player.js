@@ -15,40 +15,42 @@ export default class Player extends Actor {
       this.comboString = "";
       this.damage = 0;
       this.scene.input.keyboard.on('keydown-UP', function(event) {
-        console.log('key1');
         this.scene.showSyllable('do',this.comboString.length);
         this.comboCount += 1;
         this.comboString += "1";
         this.scene.syllable1.play();
-      }, this);
+        this.updatePatternHint();
+    }, this);
       this.scene.input.keyboard.on('keydown-DOWN', function(event) {
-        console.log('key3');
         this.scene.showSyllable('uhuh',this.comboString.length);
         this.comboCount += 1;
         this.comboString += "3";
         this.scene.syllable3.play();
-
-      }, this);
+        this.updatePatternHint();
+    }, this);
       this.scene.input.keyboard.on('keydown-LEFT', function(event) {
-        console.log('key4');
         this.scene.showSyllable('katta',this.comboString.length);
         this.comboCount += 1;
         this.comboString += "4";
         this.scene.syllable4.play();
-      }, this);
+        this.updatePatternHint();
+    }, this);
       this.scene.input.keyboard.on('keydown-RIGHT', function(event) {
-        console.log('key2');
         this.scene.showSyllable('wah',this.comboString.length);
         this.comboCount += 1;
         this.comboString += "2";
         this.scene.syllable2.play();
-      }, this);
+        this.updatePatternHint();
+    }, this);
       this.scene.input.keyboard.on('keydown-C', function(event) {
         console.log(this.comboCount);
         if(this.comboCount == 4){
           console.log(this.comboString);
+          this.updatePatternHint();
         }
       }, this);
+
+      this.createPaternHint();
     }
 
     patternCheck()
@@ -132,6 +134,120 @@ export default class Player extends Actor {
         console.log(this.comboString);
         this.comboCount = 0;
         this.comboString = "";
+        this.updatePatternHint();
       }
+    }
+
+    createPaternHint() 
+    {
+        this.scene.hintText = [];
+        for(var i=0; i<6; i++) {
+            this.addFancyText(550,100+i*24);
+        }
+    }
+
+    addFancyText(x,y) {
+        var text = this.scene.add.text(x,y,'',{font: "20px Arial Black", fill: "#fff"});
+        text.setStroke('#00f', 5);
+        text.setShadow(2,2,'#333333',2,true,true);
+        this.scene.hintText.push(text);
+    }
+
+    stringToArrows(start) {
+        var result="";
+
+        var i;
+        for(i=0; i<start.length; i++) {
+            switch(start.substring(i,i+1)) {
+                case '1':
+                    result+='^';
+                    break;
+                case '2':
+                    result+='>';
+                    break;
+                case '3':
+                    result+='v';
+                    break;
+                case '4':
+                    result+='<';
+                    break;
+                default:
+                    result+='*';
+                    break;
+            }
+        }
+
+        return result;
+    }
+
+    stringToAction(start) {
+        const actions = {            
+        '1112': 'advance',
+        '1212': 'punch',
+        '2121': 'kick',
+        '2221': 'retreat',
+        '3334': 'jump',
+        '2424': 'duck',
+        '4434': 'jumpkick',
+        };
+
+        return actions[start];
+    }
+
+    candidates()
+    {
+        const actions = [
+            '1112',
+            '1212',
+            '2121',
+            '2221',
+            '3334',
+            '2424',
+            '4434',
+        ];
+    
+        var result = [];
+
+        if(this.comboString == '') return result;
+
+        for(const key of actions) {
+            if(this.comboString == key.substr(0,this.comboString.length)) {
+                result.push(key);
+            }
+        }
+        return result;
+    }
+
+    candidateCount()
+    {
+        return this.candidates().length;
+    }
+
+    updatePatternHint()
+    {
+        if(this.comboString == "") {
+            this.scene.hintText.forEach(element => {
+                element.text='';
+            });
+            return;
+        }
+        this.scene.hintText[0].text = 'Pattern';
+        this.scene.hintText[1].text = ": " + this.stringToArrows(this.comboString);
+
+        var i=2;
+        if(this.candidates().length>0) {
+            this.candidates().forEach(element => {
+                this.scene.hintText[i].text = this.stringToArrows(element) + " " + this.stringToAction(element);
+                i++;
+            });
+        }
+
+        if(i==2) {
+            i=0;
+        }
+
+        while(i<6) {
+            this.scene.hintText[i++].text='';
+        }
     }
 }
