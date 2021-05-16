@@ -2,13 +2,12 @@
 
 // Options from main menu: play, about (shows credits) as buttons.
 
-export default class Actor extends Phaser.GameObjects.Sprite {
-    constructor ({scene,x,y,texture,frame,health}) {
-        super(scene, x, y, texture, frame);
+export default class Actor {
+    constructor ({scene,sprite,x,y,health}) {
+        //super(scene, sprite, x, y);
 
         this.scene = scene;
-        // this.anchor.setTo(0,0);
-        // this.scale.setTo(4);
+        this.sprite = sprite;
         this.health=health;
         this.maxHealth=health;
 
@@ -18,7 +17,7 @@ export default class Actor extends Phaser.GameObjects.Sprite {
         // this.attacks = this.game.add.group();
         // this.attacks.enableBody = true;
         // this.attackSpeed = 500;
-    }
+   }
 
     update()
     {
