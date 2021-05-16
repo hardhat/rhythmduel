@@ -7,6 +7,8 @@ export default class Player extends Actor {
         super({ scene, sprite, x, y, health });
         this.sprite = sprite;
         this.scene = scene;
+        this.x = x;
+        this.y = y;
     }
 
     create()
@@ -72,7 +74,6 @@ export default class Player extends Actor {
           console.log('attack punch');
           this.sprite.play('stewiepunch');
           this.sprite.flipX = true;
-          this.damage = 2;
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
           }, callbackScope: this, loop: false });
@@ -81,7 +82,6 @@ export default class Player extends Actor {
           console.log('attack kick');
           this.sprite.play('stewiekick');
           this.sprite.flipX = true;
-          this.damge = 3;
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
           }, callbackScope: this, loop: false });
@@ -117,7 +117,6 @@ export default class Player extends Actor {
           console.log('jump kick');
           this.sprite.play('stewiejumpkick');
           this.sprite.flipX = true;
-          this.damage = 5;
           this.comboString = "";
         } else {
           console.log('invalid input');
@@ -127,6 +126,18 @@ export default class Player extends Actor {
 
     update ()
     {
+      //console.log(this.x);
+      //console.log(this.scene.npc.checkHit(this.x,this.y));
+      if(this.scene.npc.checkHit(this.x,this.y)){
+        this.damage = 3;
+        console.log(this.damage);
+      } /*else if(this.scene.npc.checkHit(this.x,this.y)){
+        this.damage = 5;
+        console.log(this.damage);
+      } else if(this.scene.npc.checkHit(this.x,this.y)){
+        this.damage = 2;
+        console.log(this.damage);
+      }*/
       if(this.comboCount == 4){
         this.patternCheck();
         console.log(this.comboString);
