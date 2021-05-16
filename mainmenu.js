@@ -31,7 +31,7 @@ export default class MainMenu extends Phaser.Scene {
 
     create ()  {
         this.normalButtonList = [];
-
+        /* add buttons to list */
         this.add.image(0, 0, 'menu').setOrigin(0, 0);
         var newGameButton = this.add.image(400,300,'new');
         newGameButton.setInteractive();
@@ -45,7 +45,7 @@ export default class MainMenu extends Phaser.Scene {
         aboutButton.on('clicked', function(item) {
             this.hideNormalButtons();
 
-            var aboutWindow = this.add.image(400,300,'team');
+            var aboutWindow = this.add.image(400,300,'credits');
             aboutWindow.setInteractive();
             aboutWindow.on('clicked',this.deleteItem,this);
         },this);
