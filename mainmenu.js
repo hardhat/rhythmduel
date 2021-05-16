@@ -32,23 +32,23 @@ export default class MainMenu extends Phaser.Scene {
     create ()  {
         this.normalButtonList = [];
         /* add buttons to list */
-        this.add.image(0, 0, 'menu').setOrigin(0, 0);
+        this.add.image(0, 0, 'menu').setOrigin(0, 0); /* sets upper left corner of image to UL of game */
         var newGameButton = this.add.image(400,300,'new');
-        newGameButton.setInteractive();
+        newGameButton.setInteractive(); /* makes button clickable */
         newGameButton.on('clicked', function(item) {
-            this.scene.start('Bout');
+            this.scene.start('Bout'); /* actually starts battle */
         },this);
-        this.normalButtonList.push(newGameButton);
+        this.normalButtonList.push(newGameButton); /* puts button in list of buttons */
         
-        var aboutButton = this.add.image(400,475,'about');
+        var aboutButton = this.add.image(400,475,'about'); /* adds button to lower middle */
         aboutButton.setInteractive();
         aboutButton.on('clicked', function(item) {
             this.hideNormalButtons();
 
-            var aboutWindow = this.add.image(400,300,'credits');
+            var aboutWindow = this.add.image(400,300,'credits'); /* shows the fox. Anchor is center of image. in center of screen. */
             aboutWindow.setInteractive();
             aboutWindow.on('clicked',this.deleteItem,this);
-        },this);
+        },this); /* end of .on('clicked') */
         this.normalButtonList.push(aboutButton);
 
         //  If a Game Object is clicked on, this event is fired.
@@ -62,21 +62,21 @@ export default class MainMenu extends Phaser.Scene {
         this.createSounds();
     }
 
-    hideNormalButtons() {
+    hideNormalButtons() { /* hides and deactivates normal buttons */
         this.normalButtonList.forEach(button => {
             button.setVisible(false);
             button.input.enabled = false;
         });
     }
 
-    showNormalButtons() {
+    showNormalButtons() { /* resets normal buttons */
         this.normalButtonList.forEach(button => {
             button.setVisible(true);
             button.input.enabled = true;
         });
     }
 
-    deleteItem(item) {
+    deleteItem(item) { /* deletes passed in object and resets to normal */
         item.off('clicked',this.deleteItem);
         item.input.enabled = false;
         item.setVisible(false);
