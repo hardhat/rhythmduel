@@ -26,7 +26,10 @@ export default class MainMenu extends Phaser.Scene {
     }
 
     create ()  {
+
         this.add.image(0, 0, 'menu').setOrigin(0, 0);
+
+        this.add.image(400,300,'new');
 
         // Should be replaced with gameObject.setInteractive(shape,callback) for buttons.
         this.input.on('pointerup', function(pointer) {
