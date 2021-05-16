@@ -19,10 +19,13 @@ export default class Hud extends Phaser.GameObjects.Group {
         this.healthbar = scene.add.sprite(2,2,'healthbar').setOrigin(0, 0);
         //this.healthbar.scale.setTo(0.995, 11);
 
-         this.score = 0;
-         //this.score.pts = int;
-         //this.score.pts = 0;
-         this.scoreLabel = 'Score: ';
+        this.score = 0;
+        //this.score.pts = int;
+        //this.score.pts = 0;
+        this.scoreLabel = 'Score: ';
+        this.scene.hudText = [];
+        this.addFancyText(100,0);
+        this.addFancyText(500,0);
 
         this.scoreText = '';
         //this.scoreText.text = "";
@@ -30,7 +33,6 @@ export default class Hud extends Phaser.GameObjects.Group {
              font: '13px Verdana',
              fill: 'white',
              align: 'center'
-
         });
         */
 
@@ -49,10 +51,20 @@ export default class Hud extends Phaser.GameObjects.Group {
 
     }
 
+    addFancyText(x,y) {
+        var text = this.scene.add.text(x,y,'',{font: "20px Arial Black", fill: "#fff"});
+        text.setStroke('#00f', 5);
+        text.setShadow(2,2,'#333333',2,true,true);
+        this.scene.hudText.push(text);
+    }
+
     updateHealth ()
     {
         /*this.healthbar.crop(new Phaser.Rectangle(0, 0, (this.player.health / this.player.maxHealth) * this.width, 10));
         this.healthbar.updateCrop();*/
+        this.scene.hudText[0] = this.player.health + '/' + this.player.maxHealth;
+        this.scene.hudText[1] = this.player.health + '/' + this.player.maxHealth;
+        return;
     }
 
     updateScore(amount)
