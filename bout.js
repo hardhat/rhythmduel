@@ -23,6 +23,9 @@ export default class Bout extends Phaser.Scene {
         this.stewie = this.load.spritesheet('stewie', 'assets/sprites/stewie.png', { frameWidth: 48, frameHeight: 48 });
         this.candy = this.load.spritesheet('candy', 'assets/sprites/candy.png', { frameWidth: 48, frameHeight: 48 });
 
+        this.load.image('healthbar', 'assets/hud/healthbar.png');
+        this.load.image('hudBg', 'assets/hud/hud-bg.png');
+
         this.load.audio('1', [ 'assets/syllables/DO_woman.wav', 'assets/syllables/DO_woman.mp3', 'assets/syllables/DO_woman.ogg' ]);
         this.load.audio('2', [ 'assets/syllables/WAH_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
         this.load.audio('3', [ 'assets/syllables/UHUH_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
@@ -120,6 +123,7 @@ export default class Bout extends Phaser.Scene {
 
         this.createSounds();
         this.player.create();
+        this.hud.create();
     }
 
     createSounds() {
@@ -155,7 +159,8 @@ export default class Bout extends Phaser.Scene {
     update ()
     {
       this.player.update();
-        // Use actor for the animated figures.  Each player or npc has an actor.  This updates the player + npc.
+      // Use actor for the animated figures.  Each player or npc has an actor.  This updates the player + npc.
+      this.hud.update();
     }
 
 }
