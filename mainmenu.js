@@ -98,22 +98,22 @@ export default class MainMenu extends Phaser.Scene {
         this.input.keyboard.on('keydown-A', function () {
             console.log("Do");
             syllable1.play();
-        });
+        }, this);
     
         this.input.keyboard.on('keydown-W', function () {
             console.log("Wa");
             syllable2.play();
-        });
+        }, this);
     
         this.input.keyboard.on('keydown-S', function () {
             console.log("Uhuh");
             syllable3.play();
-        });
+        }, this);
     
         this.input.keyboard.on('keydown-D', function () {
             console.log("Katta");
             syllable4.play();
-        });
+        }, this);
     }
 
     update () {
