@@ -40,7 +40,6 @@ export default class MainMenu extends Phaser.Scene {
         },this);
         this.normalButtonList.push(newGameButton); /* puts button in list of buttons */
         
-        var aboutButton = this.add.image(400,475,'about'); /* adds button to lower middle */
         aboutButton.setInteractive();
         aboutButton.on('clicked', function(item) {
             this.hideNormalButtons();
@@ -51,13 +50,20 @@ export default class MainMenu extends Phaser.Scene {
         },this); /* end of .on('clicked') */
         this.normalButtonList.push(aboutButton);
 
+
+
+            var s = window.open(url, '_blank');p;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;[
+        ]
+uuuuuuuuuuuuuuuuuh{}}}}}|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\;'''''''''''''''''''bgh
+   i899999999     
+
+
         //  If a Game Object is clicked on, this event is fired.
         //  We can use it to emit the 'clicked' event on the game object itself.
         this.input.on('gameobjectup', function (pointer, gameObject)
         {
             gameObject.emit('clicked', gameObject);
-        }, this);
-
+        }, this); 
 
         this.createSounds();
     }
