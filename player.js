@@ -5,7 +5,7 @@ import Actor from './actor.js'
 export default class Player extends Actor {
     constructor ({ scene, sprite, x, y, health }) {
         super({ scene, sprite, x, y, health });
-
+        this.sprite = sprite;
         this.scene = scene;
     }
 
@@ -55,28 +55,44 @@ export default class Player extends Actor {
         this.patterns = ["1112","1212","2121","2221","3334","2424","4434"];
         if(this.comboString == this.patterns[0]){
           console.log('advance');
+          this.sprite.play('stewiewalk');
+          //this.sprite.flipX = true;
           this.comboString = "";
         } else if(this.comboString == this.patterns[1]){
           console.log('attack punch');
+          this.sprite.play('stewiepunch');
+          //this.sprite.flipX = true;
           this.comboString = "";
         } else if(this.comboString == this.patterns[2]){
           console.log('attack kick');
+          this.sprite.play('stewiekick');
+          //this.sprite.flipX = true;
           this.comboString = "";
         } else if(this.comboString == this.patterns[3]){
           console.log('retreat');
+          this.sprite.play('stewiewalk');
+          this.sprite.flipX = false;
           this.comboString = "";
         } else if(this.comboString == this.patterns[4]){
           console.log('shield');
+          this.sprite.play('stewiepunch');
+          //this.sprite.flipX = true;
           this.comboString = "";
         } else if(this.comboString == this.patterns[5]){
           console.log('duck punch');
+          this.sprite.play('stewiejump');
+          //this.sprite.flipX = true;
           this.comboString = "";
         } else if(this.comboString == this.patterns[6]){
           console.log('jump kick');
+          this.sprite.play('stewiejumpkick');
+          //this.sprite.flipX = true;
           this.comboString = "";
         } else {
           console.log('invalid input');
+          this.sprite.play('stewieidle');
         }
+        this.sprite.flipX = true;
 
     }
 

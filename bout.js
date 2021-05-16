@@ -14,7 +14,7 @@ export default class Bout extends Phaser.Scene {
     preload ()
     {
         this.load.image('sky', 'assets/example/sky.png');
-        
+
         this.load.image('syllable-do','assets/hud/syllable-do.png');
         this.load.image('syllable-wah','assets/hud/syllable-wah.png');
         this.load.image('syllable-uhuh','assets/hud/syllable-uhuh.png');
@@ -28,7 +28,7 @@ export default class Bout extends Phaser.Scene {
         this.load.audio('3', [ 'assets/syllables/UHUH_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
         this.load.audio('4', [ 'assets/syllables/KATTA_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
     }
-	
+
     createAnim(texture)
     {
         var name = texture;
@@ -102,12 +102,13 @@ export default class Bout extends Phaser.Scene {
         this.playerSprite = this.add.sprite(200,400);
         this.playerSprite.setScale(4);
         this.playerSprite.play('stewieidle');
+        this.playerSprite.flipX = true;
 
         this.createAnim('candy');
         this.npcSprite = this.add.sprite(600,400);
         this.npcSprite.setScale(4);
         this.npcSprite.play('candyidle');
-        
+
         var x=200;
         var y=400;
         var health=30;
@@ -127,7 +128,7 @@ export default class Bout extends Phaser.Scene {
         this.syllable3 = this.sound.add('3');
         this.syllable4 = this.sound.add('4');
         console.log('Do Wa Uhuh Katta');
-    
+
         this.input.keyboard.on('keydown-SPACE', function () {
             console.log("Quiet.");
             this.sound.stopAll();
