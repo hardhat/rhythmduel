@@ -68,6 +68,7 @@ export default class Player extends Actor {
               duration: 1000,
               delay: 0,
           });
+          this.x += 75;
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
           }, callbackScope: this, loop: false });
@@ -76,6 +77,15 @@ export default class Player extends Actor {
           console.log('attack punch');
           this.sprite.play('stewiepunch');
           this.sprite.flipX = true;
+          console.log(this.x);
+          console.log(this.scene.npc.x);
+          console.log(this.scene.npc.x-this.x);
+          if(this.scene.npc.x - this.x <= 100){
+            console.log('hit');
+            this.damage = 2;
+            this.scene.npc.health -= this.damage;
+            console.log(this.scene.npc.health);
+          }
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
           }, callbackScope: this, loop: false });
@@ -84,6 +94,12 @@ export default class Player extends Actor {
           console.log('attack kick');
           this.sprite.play('stewiekick');
           this.sprite.flipX = true;
+          if(this.scene.npc.x - this.x <= 100){
+            console.log('hit');
+            this.damage = 3;
+            this.scene.npc.health -= this.damage;
+            console.log(this.scene.npc.health);
+          }
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
           }, callbackScope: this, loop: false });
@@ -92,6 +108,7 @@ export default class Player extends Actor {
           console.log('retreat');
           this.sprite.play('stewiewalk');
           this.sprite.flipX = false;
+          this.x -= 75;
           this.scene.tweens.add({
               targets: this.sprite,
               x: this.sprite.x - 75,
@@ -119,6 +136,12 @@ export default class Player extends Actor {
           console.log('jump kick');
           this.sprite.play('stewiejumpkick');
           this.sprite.flipX = true;
+          if(this.scene.npc.x - this.x <= 100){
+            console.log('hit');
+            this.damage = 5;
+            this.scene.npc.health -= this.damage;
+            console.log(this.scene.npc.health);
+          }
           this.comboString = "";
         } else {
           console.log('invalid input');
@@ -128,18 +151,7 @@ export default class Player extends Actor {
 
     update ()
     {
-      //console.log(this.x);
-      //console.log(this.scene.npc.checkHit(this.x,this.y));
-      if(this.scene.npc.checkHit(this.x,this.y)){
-        this.damage = 3;
-        console.log(this.damage);
-      } /*else if(this.scene.npc.checkHit(this.x,this.y)){
-        this.damage = 5;
-        console.log(this.damage);
-      } else if(this.scene.npc.checkHit(this.x,this.y)){
-        this.damage = 2;
-        console.log(this.damage);
-      }*/
+
       if(this.comboCount == 4){
         this.patternCheck();
         console.log(this.comboString);
@@ -149,7 +161,7 @@ export default class Player extends Actor {
       }
     }
 
-    createPaternHint() 
+    createPaternHint()
     {
         this.scene.hintText = [];
         for(var i=0; i<6; i++) {
@@ -192,7 +204,7 @@ export default class Player extends Actor {
     }
 
     stringToAction(start) {
-        const actions = {            
+        const actions = {
         '1112': 'advance',
         '1212': 'punch',
         '2121': 'kick',
@@ -216,7 +228,7 @@ export default class Player extends Actor {
             '2424',
             '4434',
         ];
-    
+
         var result = [];
 
         if(this.comboString == '') return result;

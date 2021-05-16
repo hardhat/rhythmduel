@@ -132,6 +132,7 @@ export default class Bout extends Phaser.Scene {
         this.createSounds();
         this.player.create();
         this.hud.create();
+        this.npc.create();
     }
 
     createSounds() {
