@@ -16,13 +16,11 @@ export default class Bout extends Phaser.Scene {
         this.load.image('sky', 'assets/example/sky.png');
         this.load.image('platform', 'assets/example/platform.png');
         this.load.image('star', 'assets/example/star.png');
-        
-        this.load.spritesheet('stewie', 'assets/sprites/stewie.png', { frameWidth: 48, frameHeight: 48 });
-        console.log('Loaded stewie');
-        this.load.spritesheet('candy', 'assets/sprites/candy.png', { frameWidth: 48, frameHeight: 48 });
-        console.log('Loaded candy');
-    }
 
+        this.stewie = this.load.spritesheet('stewie', 'assets/sprites/stewie.png', { frameWidth: 48, frameHeight: 48 });
+        this.candy = this.load.spritesheet('candy', 'assets/sprites/candy.png', { frameWidth: 48, frameHeight: 48 });
+	}
+	
     createAnim(texture)
     {
         var name = texture;
@@ -88,7 +86,7 @@ export default class Bout extends Phaser.Scene {
         const keys = [ 'walk', 'idle', 'kick', 'punch', 'jump', 'jumpkick', 'win', 'die' ];
     }
 
-    create () 
+    create ()
     {
         this.add.image(0, 0, 'sky').setOrigin(0, 0);
 
@@ -110,10 +108,13 @@ export default class Bout extends Phaser.Scene {
         x=600;
         this.npc = new Npc({scene: this, sprite: this.npcSprite, x:x, y:y, health: health});
         this.hud = new Hud({scene: this, player: this.player, npc: this.npc});
+
+        this.player.create();
     }
-    
+
     update ()
     {
+      this.player.update();
         // Use actor for the animated figures.  Each player or npc has an actor.  This updates the player + npc.
     }
 
