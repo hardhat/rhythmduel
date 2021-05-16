@@ -7,37 +7,59 @@ export default class Player extends Actor {
         super({ scene, sprite, x, y, health });
 
         this.scene = scene;
+        this.scene.load.audio('1', [ 'assets/syllables/DO_woman.wav', 'assets/syllables/DO_woman.mp3', 'assets/syllables/DO_woman.ogg' ]);
+        this.scene.load.audio('2', [ 'assets/syllables/WAH_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
+        this.scene.load.audio('3', [ 'assets/syllables/UHUH_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
+        this.scene.load.audio('4', [ 'assets/syllables/KATTA_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
     }
 
     create()
     {
+      var syllable1 = this.scene.sound.add('1');
+      var syllable2 = this.scene.sound.add('2');
+      var syllable3 = this.scene.sound.add('3');
+      var syllable4 = this.scene.sound.add('4');
+      console.log('Do Wa Uhuh Katta');
+
       this.comboCount = 0;
       this.comboString = "";
       this.scene.input.keyboard.on('keydown-UP', function(event){
         console.log('key1');
         this.comboCount += 1;
         this.comboString += "1";
+        console.log("Do");
+        syllable1.play();
       }, this);
       this.scene.input.keyboard.on('keydown-DOWN', function(event){
         console.log('key3');
         this.comboCount += 1;
         this.comboString += "3";
+        console.log("Wa");
+        syllable2.play();
       }, this);
       this.scene.input.keyboard.on('keydown-LEFT', function(event){
         console.log('key4');
         this.comboCount += 1;
         this.comboString += "4";
+        console.log("Uhuh");
+        syllable3.play();
       }, this);
       this.scene.input.keyboard.on('keydown-RIGHT', function(event){
         console.log('key2');
         this.comboCount += 1;
         this.comboString += "2";
+        console.log("Katta");
+        syllable4.play();
       }, this);
       this.scene.input.keyboard.on('keydown-C', function(event){
         console.log(this.comboCount);
         if(this.comboCount == 4){
           console.log(this.comboString);
         }
+      }, this);
+      this.scene.input.keyboard.on('keydown-SPACE', function () {
+          console.log("Quiet.");
+          this.scene.sound.stopAll();
       }, this);
     }
 
