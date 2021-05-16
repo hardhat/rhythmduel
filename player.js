@@ -52,19 +52,38 @@ export default class Player extends Actor {
 
     patternCheck()
     {
-        this.patterns = ["1112","1212","2121","2221","3334","2424","4434"]
-        for(var i = 0; i < this.patterns.length; i++){
-        }
+        this.patterns = ["1112","1212","2121","2221","3334","2424","4434"];
         if(this.comboString == this.patterns[0]){
           console.log('advance');
           this.comboString = "";
+        } else if(this.comboString == this.patterns[1]){
+          console.log('attack punch');
+          this.comboString = "";
+        } else if(this.comboString == this.patterns[2]){
+          console.log('attack kick');
+          this.comboString = "";
+        } else if(this.comboString == this.patterns[3]){
+          console.log('retreat');
+          this.comboString = "";
+        } else if(this.comboString == this.patterns[4]){
+          console.log('shield');
+          this.comboString = "";
+        } else if(this.comboString == this.patterns[5]){
+          console.log('duck punch');
+          this.comboString = "";
+        } else if(this.comboString == this.patterns[6]){
+          console.log('jump kick');
+          this.comboString = "";
+        } else {
+          console.log('invalid input');
         }
+
     }
 
     update ()
     {
-      this.patternCheck();
       if(this.comboCount == 4){
+        this.patternCheck();
         console.log(this.comboString);
         this.comboCount = 0;
         this.comboString = "";
