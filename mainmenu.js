@@ -40,6 +40,7 @@ export default class MainMenu extends Phaser.Scene {
         },this);
         this.normalButtonList.push(newGameButton); /* puts button in list of buttons */
         
+        var aboutButton = this.add.image(100,475,'about'); /* adds button to lower left */
         aboutButton.setInteractive();
         aboutButton.on('clicked', function(item) {
             this.hideNormalButtons();
@@ -52,10 +53,34 @@ export default class MainMenu extends Phaser.Scene {
 
 
 
-            var s = window.open(url, '_blank');p;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;[
-        ]
-uuuuuuuuuuuuuuuuuh{}}}}}|\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\;'''''''''''''''''''bgh
-   i899999999     
+        var jamButton = this.add.image(700,475,'tojam'); // adds button to lower right. 
+        jamButton.setInteractive();
+        console.log("before");
+        jamButton.on('clicked',function(item) {
+            this.hideNormalButtons();
+            console.log("middle");
+         /*   
+            /*jamButton.on('pointerup', openExternalLink, this);
+             
+            console.log("after");*/
+        }, this);
+/*
+        function openExternalLink ()
+        {
+            var url = 'https://tojam.ca';
+            console.log("open");
+
+            var s = window.open(url, '_blank')
+            
+           if (s && s.focus)
+            {
+                s.focus();
+            }
+            else if (!s)
+            {
+                window.location.href = url;
+            } 
+        };*/
 
 
         //  If a Game Object is clicked on, this event is fired.
