@@ -99,14 +99,14 @@ export default class Bout extends Phaser.Scene {
         this.add.image(0, 0, 'sky').setOrigin(0, 0);
 
         this.createAnim('stewie');
-        this.player = this.add.sprite(200,400);
-        this.player.setScale(4);
-        this.player.play('stewieidle');
+        this.playerSprite = this.add.sprite(200,400);
+        this.playerSprite.setScale(4);
+        this.playerSprite.play('stewieidle');
 
         this.createAnim('candy');
-        this.npc = this.add.sprite(600,400);
-        this.npc.setScale(4);
-        this.npc.play('candyidle');
+        this.npcSprite = this.add.sprite(600,400);
+        this.npcSprite.setScale(4);
+        this.npcSprite.play('candyidle');
         
         var x=200;
         var y=400;
