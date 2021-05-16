@@ -13,6 +13,7 @@ export default class Player extends Actor {
     {
       this.comboCount = 0;
       this.comboString = "";
+      this.damage = 0;
       this.scene.input.keyboard.on('keydown-UP', function(event) {
         console.log('key1');
         this.scene.showSyllable('do',this.comboString.length);
@@ -56,44 +57,72 @@ export default class Player extends Actor {
         if(this.comboString == this.patterns[0]){
           console.log('advance');
           this.sprite.play('stewiewalk');
-          //this.sprite.flipX = true;
+          this.sprite.flipX = true;
+          this.scene.tweens.add({
+              targets: this.sprite,
+              x: this.sprite.x + 75,
+              duration: 1000,
+              delay: 0,
+          });
+          this.scene.time.addEvent({ delay: 1000, callback: function() {
+              this.sprite.play('stewieidle');
+          }, callbackScope: this, loop: false });
           this.comboString = "";
         } else if(this.comboString == this.patterns[1]){
           console.log('attack punch');
           this.sprite.play('stewiepunch');
-          //this.sprite.flipX = true;
+          this.sprite.flipX = true;
+          this.damage = 2;
+          this.scene.time.addEvent({ delay: 1000, callback: function() {
+              this.sprite.play('stewieidle');
+          }, callbackScope: this, loop: false });
           this.comboString = "";
         } else if(this.comboString == this.patterns[2]){
           console.log('attack kick');
           this.sprite.play('stewiekick');
-          //this.sprite.flipX = true;
+          this.sprite.flipX = true;
+          this.damge = 3;
+          this.scene.time.addEvent({ delay: 1000, callback: function() {
+              this.sprite.play('stewieidle');
+          }, callbackScope: this, loop: false });
           this.comboString = "";
         } else if(this.comboString == this.patterns[3]){
           console.log('retreat');
           this.sprite.play('stewiewalk');
           this.sprite.flipX = false;
+          this.scene.tweens.add({
+              targets: this.sprite,
+              x: this.sprite.x - 75,
+              duration: 1000,
+              delay: 0,
+          });
+          this.scene.time.addEvent({ delay: 1000, callback: function() {
+              this.sprite.play('stewieidle');
+          }, callbackScope: this, loop: false });
           this.comboString = "";
         } else if(this.comboString == this.patterns[4]){
           console.log('shield');
-          this.sprite.play('stewiepunch');
-          //this.sprite.flipX = true;
+          this.sprite.play('stewieshield');
+          this.sprite.flipX = true;
+          this.scene.time.addEvent({ delay: 1000, callback: function() {
+              this.sprite.play('stewieidle');
+          }, callbackScope: this, loop: false });
           this.comboString = "";
         } else if(this.comboString == this.patterns[5]){
           console.log('duck punch');
           this.sprite.play('stewiejump');
-          //this.sprite.flipX = true;
+          this.sprite.flipX = true;
           this.comboString = "";
         } else if(this.comboString == this.patterns[6]){
           console.log('jump kick');
           this.sprite.play('stewiejumpkick');
-          //this.sprite.flipX = true;
+          this.sprite.flipX = true;
+          this.damage = 5;
           this.comboString = "";
         } else {
           console.log('invalid input');
           this.sprite.play('stewieidle');
         }
-        this.sprite.flipX = true;
-
     }
 
     update ()

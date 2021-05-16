@@ -67,6 +67,14 @@ export default class Bout extends Phaser.Scene {
         });
 
         this.anims.create({
+            key: name+'shield',
+            frames: this.anims.generateFrameNumbers(name, { frames: [ 15, 16, 17, 18, 18, 18, 18, 18, 17, 15 ] }),
+            frameRate: 8,
+            repeat: -1,
+            repeatDelay: 2000
+        });
+
+        this.anims.create({
             key: name+'jump',
             frames: this.anims.generateFrameNumbers(name, { frames: [ 20, 21, 22, 23 ] }),
             frameRate: 8,
