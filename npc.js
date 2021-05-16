@@ -8,10 +8,20 @@ export default class Npc extends Actor {
         this.sprite = sprite;
         this.x = x;
         this.y = y;
+        this.alive = true;
+
     }
 
     create(){
+    }
 
+    isAlive(){
+      if(this.health <= 0){
+        this.alive = false;
+        console.log(this.health);
+        console.log(this.alive);
+        //this.sprite.play('candydie');
+      }
     }
 
 

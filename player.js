@@ -89,6 +89,7 @@ export default class Player extends Actor {
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
           }, callbackScope: this, loop: false });
+          this.scene.npc.isAlive();
           this.comboString = "";
         } else if(this.comboString == this.patterns[2]){
           console.log('attack kick');
@@ -103,6 +104,7 @@ export default class Player extends Actor {
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
           }, callbackScope: this, loop: false });
+          this.scene.npc.isAlive();
           this.comboString = "";
         } else if(this.comboString == this.patterns[3]){
           console.log('retreat');
@@ -132,6 +134,9 @@ export default class Player extends Actor {
           this.sprite.play('stewiejump');
           this.sprite.flipX = true;
           this.comboString = "";
+          this.scene.time.addEvent({ delay: 1000, callback: function() {
+              this.sprite.play('stewieidle');
+          }, callbackScope: this, loop: false });
         } else if(this.comboString == this.patterns[6]){
           console.log('jump kick');
           this.sprite.play('stewiejumpkick');
@@ -142,6 +147,10 @@ export default class Player extends Actor {
             this.scene.npc.health -= this.damage;
             console.log(this.scene.npc.health);
           }
+          this.scene.time.addEvent({ delay: 1000, callback: function() {
+              this.sprite.play('stewieidle');
+          }, callbackScope: this, loop: false });
+          this.scene.npc.isAlive();
           this.comboString = "";
         } else {
           console.log('invalid input');

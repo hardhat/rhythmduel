@@ -115,11 +115,6 @@ export default class Bout extends Phaser.Scene {
         this.playerSprite.play('stewieidle');
         this.playerSprite.flipX = true;
 
-        this.createAnim('candy');
-        this.npcSprite = this.add.sprite(600,400);
-        this.npcSprite.setScale(4);
-        this.npcSprite.play('candyidle');
-
         var x=200;
         var y=400;
         var health=30;
@@ -128,6 +123,13 @@ export default class Bout extends Phaser.Scene {
         x=600;
         this.npc = new Npc({scene: this, sprite: this.npcSprite, x:x, y:y, health: health});
         this.hud = new Hud({scene: this, player: this.player, npc: this.npc});
+        
+        if(this.npc.alive){
+          this.createAnim('candy');
+          this.npcSprite = this.add.sprite(600,400);
+          this.npcSprite.setScale(4);
+          this.npcSprite.play('candyidle');
+        }
 
         this.createSounds();
         this.player.create();
