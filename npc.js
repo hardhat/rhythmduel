@@ -3,8 +3,8 @@ import Actor from './actor.js'
 // Calculates AI and updates Actor class
 
 export default class Npc extends Actor {
-    constructor ({scene,x,y,texture,frame,health}) {
-        super({scene,x,y,texture,frame,health});
+    constructor ({scene,sprite,x,y,health}) {
+        super({scene,sprite,x,y,health});
     }
 
     
