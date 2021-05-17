@@ -115,6 +115,7 @@ export default class MainMenu extends Phaser.Scene {
 
     hideNormalButtons() { /* hides and deactivates normal buttons */
         this.normalButtonList.forEach(button => {
+            this.syllable3.play();
             button.setVisible(false);
             button.input.enabled = false;
         });
@@ -131,14 +132,15 @@ export default class MainMenu extends Phaser.Scene {
         item.off('clicked',this.deleteItem);
         item.input.enabled = false;
         item.setVisible(false);
+        this.syllable4.play();
         this.showNormalButtons();
     }
 
     createSounds() {
-        var syllable1 = this.sound.add('1');
-        var syllable2 = this.sound.add('2');
-        var syllable3 = this.sound.add('3');
-        var syllable4 = this.sound.add('4');
+        this.syllable1 = this.sound.add('1');
+        this.syllable2 = this.sound.add('2');
+        this.syllable3 = this.sound.add('3');
+        this.syllable4 = this.sound.add('4');
         console.log('Do Wa Uhuh Katta');
     
         this.input.keyboard.on('keydown-SPACE', function () {
@@ -148,23 +150,30 @@ export default class MainMenu extends Phaser.Scene {
     
         this.input.keyboard.on('keydown-A', function () {
             console.log("Do");
-            syllable1.play();
+            this.syllable1.play();
         }, this);
     
         this.input.keyboard.on('keydown-W', function () {
             console.log("Wa");
-            syllable2.play();
+            this.syllable2.play();
         }, this);
     
         this.input.keyboard.on('keydown-S', function () {
             console.log("Uhuh");
-            syllable3.play();
+            this.syllable3.play();
         }, this);
     
         this.input.keyboard.on('keydown-D', function () {
             console.log("Katta");
-            syllable4.play();
+            this.syllable4.play();
         }, this);
+
+        this.time.addEvent({ delay: 1000, callback: function() {
+            this.syllable1.play();
+        }, callbackScope: this, loop: false });
+        this.time.addEvent({ delay: 2000, callback: function() {
+            this.syllable2.play();
+        }, callbackScope: this, loop: false });
     }
 
     update () {
