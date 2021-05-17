@@ -6,6 +6,7 @@ export default class Npc extends Actor {
     constructor ({scene,sprite,x,y,health}) {
         super({scene,sprite,x,y,health});
         this.sprite = sprite;
+        this.scene = scene;
         this.x = x;
         this.y = y;
         this.alive = true;
@@ -15,6 +16,7 @@ export default class Npc extends Actor {
     }
 
     create(){
+        this.scene.npcSprite.flipX = true;
     }
 
     addFancyText(x,y) {
@@ -30,6 +32,7 @@ export default class Npc extends Actor {
         console.log(this.health);
         console.log(this.alive);
         this.scene.npcText[0].text = 'You Win';
+        this.scene.manWin.play();
         //this.sprite.play('candydie');
       }
     }

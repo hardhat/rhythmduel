@@ -18,6 +18,7 @@ export default class Player extends Actor {
       this.comboCount = 0;
       this.comboString = "";
       this.damage = 0;
+      this.nextSfx = 0;
       this.scene.input.keyboard.on('keydown-UP', this.doUp, this);
       this.scene.input.keyboard.on('keydown-DOWN', this.doDown, this);
       this.scene.input.keyboard.on('keydown-LEFT', this.doLeft, this);
@@ -75,7 +76,7 @@ export default class Player extends Actor {
         if(this.comboString == this.patterns[0]){
           console.log('advance');
           this.sprite.play('stewiewalk');
-          this.sprite.flipX = true;
+          this.sprite.flipX = false;
           this.scene.tweens.add({
               targets: this.sprite,
               x: this.sprite.x + 75,
@@ -90,8 +91,8 @@ export default class Player extends Actor {
         } else if(this.comboString == this.patterns[1]){
           console.log('attack punch');
           this.sprite.play('stewiepunch');
-          this.sprite.flipX = true;
-          this.scene.manFight[0].play();
+          this.sprite.flipX = false;
+          this.scene.manFight[(this.nextSfx++)%5].play();
           console.log(this.x);
           console.log(this.scene.npc.x);
           console.log(this.scene.npc.x-this.x);
@@ -109,8 +110,8 @@ export default class Player extends Actor {
         } else if(this.comboString == this.patterns[2]){
           console.log('attack kick');
           this.sprite.play('stewiekick');
-          this.sprite.flipX = true;
-          this.scene.manFight[1].play();
+          this.sprite.flipX = false;
+          this.scene.manFight[(this.nextSfx++)%5].play();
           if(this.scene.npc.x - this.x <= 100){
             console.log('hit');
             this.damage = 3;
@@ -125,7 +126,7 @@ export default class Player extends Actor {
         } else if(this.comboString == this.patterns[3]){
           console.log('retreat');
           this.sprite.play('stewiewalk');
-          this.sprite.flipX = false;
+          this.sprite.flipX = true;
           this.x -= 75;
           this.scene.tweens.add({
               targets: this.sprite,
@@ -140,8 +141,8 @@ export default class Player extends Actor {
         } else if(this.comboString == this.patterns[4]){
           console.log('shield');
           this.sprite.play('stewieshield');
-          this.sprite.flipX = true;
-          this.scene.manFight[2].play();
+          this.sprite.flipX = false;
+          this.scene.manFight[(this.nextSfx++)%5].play();
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
           }, callbackScope: this, loop: false });
@@ -149,8 +150,8 @@ export default class Player extends Actor {
         } else if(this.comboString == this.patterns[5]){
           console.log('duck punch');
           this.sprite.play('stewiejump');
-          this.sprite.flipX = true;
-          this.scene.manFight[3].play();
+          this.sprite.flipX = false;
+          this.scene.manFight[(this.nextSfx++)%5].play();
           this.comboString = "";
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
@@ -158,8 +159,8 @@ export default class Player extends Actor {
         } else if(this.comboString == this.patterns[6]){
           console.log('jump kick');
           this.sprite.play('stewiejumpkick');
-          this.sprite.flipX = true;
-          this.scene.manFight[5].play();
+          this.sprite.flipX = false;
+          this.scene.manFight[(this.nextSfx++)%5].play();
           if(this.scene.npc.x - this.x <= 100){
             console.log('hit');
             this.damage = 5;

@@ -20,8 +20,8 @@ export default class Bout extends Phaser.Scene {
         this.load.image('syllable-uhuh','assets/hud/syllable-uhuh.png');
         this.load.image('syllable-katta','assets/hud/syllable-katta.png');
 
-        this.stewie = this.load.spritesheet('stewie', 'assets/sprites/stewie.png', { frameWidth: 48, frameHeight: 48 });
-        this.candy = this.load.spritesheet('candy', 'assets/sprites/candy.png', { frameWidth: 48, frameHeight: 48 });
+        this.stewie = this.load.spritesheet('stewie', 'assets/sprites/man.png', { frameWidth: 48, frameHeight: 48 });
+        this.candy = this.load.spritesheet('candy', 'assets/sprites/woman.png', { frameWidth: 48, frameHeight: 48 });
 
         this.load.image('healthbar', 'assets/hud/healthbar.png');
         this.load.image('hudBg', 'assets/hud/hud-bg.png');
