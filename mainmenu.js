@@ -1,5 +1,4 @@
 // Main menu goes here.
-//import Phaser from 'dist/phaser-arcade-physics.min.js'
 
 // Options from main menu: play, about (shows credits) as buttons.
 
