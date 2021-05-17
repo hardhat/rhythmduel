@@ -10,38 +10,22 @@ export default class Hud extends Phaser.GameObjects.Group {
         this.player=player;
         this.npc=npc;
 
-        //this.bg = new Phaser.Image(this.scene, 0, 0, 'hudBg');
-        //var newGameButton = this.add.image(400,300,'new');
-        this.bg = this.scene.add.image(0,0,'hudBg').setOrigin(0, 0);
+        //this.bg = this.scene.add.image(0,0,'hudBg').setOrigin(0, 0);
         this.width = 800;
 
-        //this.healthbar = new Phaser.Sprite(this.scene, 2, 2, 'healthbar').setOrigin(0, 0);
-        this.healthbar = scene.add.sprite(2,2,'healthbar').setOrigin(0, 0);
-        //this.healthbar.scale.setTo(0.995, 11);
-
+        //this.healthbar = scene.add.sprite(2,2,'healthbar').setOrigin(0, 0);
+        
         this.score = 0;
         //this.score.pts = int;
         //this.score.pts = 0;
         this.scoreLabel = 'Score: ';
         this.scene.hudText = [];
-        this.addFancyText(100,30);
-        this.addFancyText(650,30);
-
-        this.scoreText = '';
-        //this.scoreText.text = "";
-         /*this.scoreText = new Phaser.Text(this.scene, 20, 14, this.scoreLabel + this.score, {
-             font: '13px Verdana',
-             fill: 'white',
-             align: 'center'
-        });
-        */
-
-        /*this.scene.add(this.bg);
-        this.scene.add(this.healthbar);
-        this.scene.add(this.scoreText);
-        */
-
-        console.log('I Am the Very Model of a Modern Major General;');
+        this.addFancyText(150,30);
+        this.addFancyText(500,30);
+        this.addFancyText(150,5);
+        this.addFancyText(500,5);
+        this.scene.hudText[2].text='Player: Candy';
+        this.scene.hudText[3].text='Enemy: Stewie';
     }
 
     update ()
@@ -71,17 +55,4 @@ export default class Hud extends Phaser.GameObjects.Group {
         //this.scoreText.text = this.scoreLabel + (this.score * 10);
         this.scoreText = this.scoreLabel + (this.score * 10);
     }
-    /*
-    updateScore(score) {
-        this.score.pts += score;
-        this.score.textObject.setText(('' + this.score.pts).padStart(6, '0'));
-    }
-    */
-    /*
-    getPlayerHealth(player)
-    {
-        return player.health;
-    }
-
-    */
 }
