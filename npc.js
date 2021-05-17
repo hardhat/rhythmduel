@@ -9,10 +9,19 @@ export default class Npc extends Actor {
         this.x = x;
         this.y = y;
         this.alive = true;
+        this.scene.npcText = [];
+        this.addFancyText(375,300);
 
     }
 
     create(){
+    }
+
+    addFancyText(x,y) {
+        var text = this.scene.add.text(x,y,'',{font: "20px Arial Black", fill: "#fff"});
+        text.setStroke('#00f', 5);
+        text.setShadow(2,2,'#333333',2,true,true);
+        this.scene.npcText.push(text);
     }
 
     isAlive(){
@@ -20,10 +29,10 @@ export default class Npc extends Actor {
         this.alive = false;
         console.log(this.health);
         console.log(this.alive);
+        this.scene.npcText[0].text = 'You Win';
         //this.sprite.play('candydie');
       }
     }
-
 
     update ()
     {

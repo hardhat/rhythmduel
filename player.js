@@ -9,6 +9,8 @@ export default class Player extends Actor {
         this.scene = scene;
         this.x = x;
         this.y = y;
+        this.scene.playerText = [];
+        this.addFancyText1(300,300);
     }
 
     create()
@@ -196,6 +198,13 @@ export default class Player extends Actor {
         text.setStroke('#00f', 5);
         text.setShadow(2,2,'#333333',2,true,true);
         this.scene.hintText.push(text);
+    }
+
+    addFancyText1(x,y) {
+        var text = this.scene.add.text(x,y,'',{font: "20px Arial Black", fill: "#fff"});
+        text.setStroke('#00f', 5);
+        text.setShadow(2,2,'#333333',2,true,true);
+        this.scene.playerText.push(text);
     }
 
     stringToArrows(start) {
