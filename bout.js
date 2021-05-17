@@ -13,7 +13,7 @@ export default class Bout extends Phaser.Scene {
 
     preload ()
     {
-        this.load.image('sky', 'assets/example/sky.png');
+        this.load.image('sky', 'assets/sprites/sky.png');
 
         this.load.image('syllable-do','assets/hud/syllable-do.png');
         this.load.image('syllable-wah','assets/hud/syllable-wah.png');
