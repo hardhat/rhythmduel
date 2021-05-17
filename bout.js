@@ -30,6 +30,20 @@ export default class Bout extends Phaser.Scene {
         this.load.audio('2', [ 'assets/syllables/WAH_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
         this.load.audio('3', [ 'assets/syllables/UHUH_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
         this.load.audio('4', [ 'assets/syllables/KATTA_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
+
+        this.load.audio('woman1', [ 'assets/sfx/FIGHT_woman1.wav' ]);
+        this.load.audio('woman2', [ 'assets/sfx/FIGHT_woman2.wav' ]);
+        this.load.audio('woman3', [ 'assets/sfx/FIGHT_woman3.wav' ]);
+        this.load.audio('woman4', [ 'assets/sfx/FIGHT_woman4.wav' ]);
+        this.load.audio('woman5', [ 'assets/sfx/FIGHT_woman5.wav' ]);
+        this.load.audio('womanwin', [ 'assets/sfx/WIN_woman.wav' ] );
+        this.load.audio('man1', [ 'assets/sfx/FIGHT_man1.wav' ]);
+        this.load.audio('man2', [ 'assets/sfx/FIGHT_man2.wav' ]);
+        this.load.audio('man3', [ 'assets/sfx/FIGHT_man3.wav' ]);
+        this.load.audio('man4', [ 'assets/sfx/FIGHT_man4.wav' ]);
+        this.load.audio('man5', [ 'assets/sfx/FIGHT_man5.wav' ]);
+        this.load.audio('man6', [ 'assets/sfx/FIGHT_man6.wav' ]);
+        this.load.audio('manwin', [ 'assets/sfx/WIN_man.wav' ] );
     }
 
     createAnim(texture)
@@ -148,6 +162,24 @@ export default class Bout extends Phaser.Scene {
             console.log("Quiet.");
             this.sound.stopAll();
         }, this);
+        
+        this.womanFight = [];
+        this.womanFight.push(this.sound.add('woman1'));
+        this.womanFight.push(this.sound.add('woman2'));
+        this.womanFight.push(this.sound.add('woman3'));
+        this.womanFight.push(this.sound.add('woman4'));
+        this.womanFight.push(this.sound.add('woman5'));
+
+        this.manFight = [];
+        this.manFight.push(this.sound.add('man1'));
+        this.manFight.push(this.sound.add('man2'));
+        this.manFight.push(this.sound.add('man3'));
+        this.manFight.push(this.sound.add('man4'));
+        this.manFight.push(this.sound.add('man5'));
+        this.manFight.push(this.sound.add('man6'));
+
+        this.womanWin = this.sound.add('womanwin');
+        this.manWin = this.sound.add('manwin');
     }
 
     showSyllable(syllable,pos) {

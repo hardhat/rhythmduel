@@ -16,34 +16,14 @@ export default class Player extends Actor {
       this.comboCount = 0;
       this.comboString = "";
       this.damage = 0;
-      this.scene.input.keyboard.on('keydown-UP', function(event) {
-        this.scene.showSyllable('do',this.comboString.length);
-        this.comboCount += 1;
-        this.comboString += "1";
-        this.scene.syllable1.play();
-        this.updatePatternHint();
-    }, this);
-      this.scene.input.keyboard.on('keydown-DOWN', function(event) {
-        this.scene.showSyllable('uhuh',this.comboString.length);
-        this.comboCount += 1;
-        this.comboString += "3";
-        this.scene.syllable3.play();
-        this.updatePatternHint();
-    }, this);
-      this.scene.input.keyboard.on('keydown-LEFT', function(event) {
-        this.scene.showSyllable('katta',this.comboString.length);
-        this.comboCount += 1;
-        this.comboString += "4";
-        this.scene.syllable4.play();
-        this.updatePatternHint();
-    }, this);
-      this.scene.input.keyboard.on('keydown-RIGHT', function(event) {
-        this.scene.showSyllable('wah',this.comboString.length);
-        this.comboCount += 1;
-        this.comboString += "2";
-        this.scene.syllable2.play();
-        this.updatePatternHint();
-    }, this);
+      this.scene.input.keyboard.on('keydown-UP', this.doUp, this);
+      this.scene.input.keyboard.on('keydown-DOWN', this.doDown, this);
+      this.scene.input.keyboard.on('keydown-LEFT', this.doLeft, this);
+      this.scene.input.keyboard.on('keydown-RIGHT', this.doRight, this);
+      this.scene.input.keyboard.on('keydown-W', this.doUp, this);
+      this.scene.input.keyboard.on('keydown-S', this.doDown, this);
+      this.scene.input.keyboard.on('keydown-A', this.doLeft, this);
+      this.scene.input.keyboard.on('keydown-D', this.doRight, this);
       this.scene.input.keyboard.on('keydown-C', function(event) {
         console.log(this.comboCount);
         if(this.comboCount == 4){
@@ -54,6 +34,39 @@ export default class Player extends Actor {
 
       this.createPaternHint();
     }
+
+    doUp(event) {
+        this.scene.showSyllable('do',this.comboString.length);
+        this.comboCount += 1;
+        this.comboString += "1";
+        this.scene.syllable1.play();
+        this.updatePatternHint();
+    }
+
+    doRight(event) {
+        this.scene.showSyllable('wah',this.comboString.length);
+        this.comboCount += 1;
+        this.comboString += "2";
+        this.scene.syllable2.play();
+        this.updatePatternHint();
+    }
+
+    doDown(event) {
+        this.scene.showSyllable('uhuh',this.comboString.length);
+        this.comboCount += 1;
+        this.comboString += "3";
+        this.scene.syllable3.play();
+        this.updatePatternHint();
+    }
+
+    doLeft(event) {
+        this.scene.showSyllable('katta',this.comboString.length);
+        this.comboCount += 1;
+        this.comboString += "4";
+        this.scene.syllable4.play();
+        this.updatePatternHint();
+    }
+
 
     patternCheck()
     {
