@@ -16,9 +16,9 @@ export default class MainMenu extends Phaser.Scene {
         this.load.image('new', 'assets/menu/Button_New.png');
         this.load.image('history', 'assets/menu/Button_History.png');
         this.load.image('dog', 'assets/menu/dog.png');
-        this.load.image('goat', 'assets/menu/goatonapole.jpg');
+        this.load.image('polegoat', 'assets/menu/goatonapole.jpg');
         this.load.image('back', 'assets/menu/Button_Back.png');
-        this.load.image('team', 'assets/menu/Button_GOAT.png');
+        this.load.image('goat', 'assets/menu/Button_GOAT.png');
         this.load.image('tojam', 'assets/menu/Button_ToJam.png');
         this.load.image('credits', 'assets/menu/credits.png');
         this.load.image('rulesWindow', 'assets/menu/rulesScreen.png');
@@ -92,6 +92,16 @@ export default class MainMenu extends Phaser.Scene {
         },this); /* end of .on('clicked') */
         this.normalButtonList.push(rulesButton);
 
+        var goatButton = this.add.image(100,125,'goat'); /* adds button to upper right */
+        goatButton.setInteractive();
+        goatButton.on('clicked', function(item) {
+            this.hideNormalButtons();
+
+            var goatWindow = this.add.image(400,300,'polegoat'); // shows the wolverine.
+            goatWindow.setInteractive();
+            goatWindow.on('clicked',this.deleteItem,this);
+        },this); /* end of .on('clicked') */
+        this.normalButtonList.push(goatButton);
 
         //  If a Game Object is clicked on, this event is fired.
         //  We can use it to emit the 'clicked' event on the game object itself.
