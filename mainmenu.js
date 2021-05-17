@@ -18,6 +18,7 @@ export default class MainMenu extends Phaser.Scene {
         this.load.image('dog', 'assets/menu/dog.png');
         this.load.image('polegoat', 'assets/menu/goatonapole.jpg');
         this.load.image('back', 'assets/menu/Button_Back.png');
+        this.load.image('jamWindow', 'assets/menu/jamWindow.png');
         this.load.image('goat', 'assets/menu/Button_GOAT.png');
         this.load.image('tojam', 'assets/menu/Button_ToJam.png');
         this.load.image('credits', 'assets/menu/credits.png');
@@ -52,34 +53,15 @@ export default class MainMenu extends Phaser.Scene {
         this.normalButtonList.push(aboutButton);
 
         var jamButton = this.add.image(700,475,'tojam'); // adds button to lower right. 
-        //jamButton.setInteractive();
-        //console.log("before");
-        /*jamButton.on('clicked',function(item) {
+        jamButton.setInteractive();
+        jamButton.on('clicked', function(item) {
             this.hideNormalButtons();
-            console.log("middle");
-         /*   
-            /*jamButton.on('pointerup', openExternalLink, this);
-             
-            console.log("after");
-        }, this);*/
-/*
-        function openExternalLink ()
-        {
-            var url = 'https://tojam.ca';
-            console.log("open");
 
-            var s = window.open(url, '_blank')
-
-           if (s && s.focus)
-            {
-                s.focus();
-            }
-            else if (!s)
-            {
-                window.location.href = url;
-            } 
-        };*/
-        //this.normalButtonList.push(jamButton);
+            var jamWindow = this.add.image(400,300,'jamWindow'); // shows the wolverine.
+            jamWindow.setInteractive();
+            jamWindow.on('clicked',this.deleteItem,this);
+        },this); /* end of .on('clicked') */
+        this.normalButtonList.push(jamButton);
 
         var rulesButton = this.add.image(700,125,'rules'); /* adds button to upper right */
         rulesButton.setInteractive();
