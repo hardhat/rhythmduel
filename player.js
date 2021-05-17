@@ -69,7 +69,6 @@ export default class Player extends Actor {
         this.updatePatternHint();
     }
 
-
     patternCheck()
     {
         this.patterns = ["1112","1212","2121","2221","3334","2424","4434"];
@@ -92,6 +91,7 @@ export default class Player extends Actor {
           console.log('attack punch');
           this.sprite.play('stewiepunch');
           this.sprite.flipX = true;
+          this.scene.manFight[0].play();
           console.log(this.x);
           console.log(this.scene.npc.x);
           console.log(this.scene.npc.x-this.x);
@@ -110,6 +110,7 @@ export default class Player extends Actor {
           console.log('attack kick');
           this.sprite.play('stewiekick');
           this.sprite.flipX = true;
+          this.scene.manFight[1].play();
           if(this.scene.npc.x - this.x <= 100){
             console.log('hit');
             this.damage = 3;
@@ -140,6 +141,7 @@ export default class Player extends Actor {
           console.log('shield');
           this.sprite.play('stewieshield');
           this.sprite.flipX = true;
+          this.scene.manFight[2].play();
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
           }, callbackScope: this, loop: false });
@@ -148,6 +150,7 @@ export default class Player extends Actor {
           console.log('duck punch');
           this.sprite.play('stewiejump');
           this.sprite.flipX = true;
+          this.scene.manFight[3].play();
           this.comboString = "";
           this.scene.time.addEvent({ delay: 1000, callback: function() {
               this.sprite.play('stewieidle');
@@ -156,6 +159,7 @@ export default class Player extends Actor {
           console.log('jump kick');
           this.sprite.play('stewiejumpkick');
           this.sprite.flipX = true;
+          this.scene.manFight[5].play();
           if(this.scene.npc.x - this.x <= 100){
             console.log('hit');
             this.damage = 5;
