@@ -21,6 +21,7 @@ export default class MainMenu extends Phaser.Scene {
         this.load.image('team', 'assets/menu/Button_GOAT.png');
         this.load.image('tojam', 'assets/menu/Button_ToJam.png');
         this.load.image('credits', 'assets/menu/credits.png');
+        this.load.image('rulesWindow', 'assets/menu/rulesScreen.png');
 
         this.load.audio('1', [ 'assets/syllables/DO_woman.wav', 'assets/syllables/DO_woman.mp3', 'assets/syllables/DO_woman.ogg' ]);
         this.load.audio('2', [ 'assets/syllables/WAH_woman.wav', 'assets/syllables/WAH_woman.mp3', 'assets/syllables/WAH_woman.ogg' ]);
@@ -30,7 +31,7 @@ export default class MainMenu extends Phaser.Scene {
 
     create ()  {
         this.normalButtonList = [];
-        /* add buttons to list */
+        /* create list of buttons */
         this.add.image(0, 0, 'menu').setOrigin(0, 0); /* sets upper left corner of image to UL of game */
         var newGameButton = this.add.image(400,300,'new');
         newGameButton.setInteractive(); /* makes button clickable */
@@ -50,19 +51,17 @@ export default class MainMenu extends Phaser.Scene {
         },this); /* end of .on('clicked') */
         this.normalButtonList.push(aboutButton);
 
-
-
         var jamButton = this.add.image(700,475,'tojam'); // adds button to lower right. 
-        jamButton.setInteractive();
-        console.log("before");
-        jamButton.on('clicked',function(item) {
+        //jamButton.setInteractive();
+        //console.log("before");
+        /*jamButton.on('clicked',function(item) {
             this.hideNormalButtons();
             console.log("middle");
          /*   
             /*jamButton.on('pointerup', openExternalLink, this);
              
-            console.log("after");*/
-        }, this);
+            console.log("after");
+        }, this);*/
 /*
         function openExternalLink ()
         {
@@ -70,7 +69,7 @@ export default class MainMenu extends Phaser.Scene {
             console.log("open");
 
             var s = window.open(url, '_blank')
-            
+
            if (s && s.focus)
             {
                 s.focus();
@@ -80,6 +79,18 @@ export default class MainMenu extends Phaser.Scene {
                 window.location.href = url;
             } 
         };*/
+        //this.normalButtonList.push(jamButton);
+
+        var rulesButton = this.add.image(700,125,'rules'); /* adds button to upper right */
+        rulesButton.setInteractive();
+        rulesButton.on('clicked', function(item) {
+            this.hideNormalButtons();
+
+            var rulesWindow = this.add.image(400,300,'rulesWindow'); // shows the wolverine.
+            rulesWindow.setInteractive();
+            rulesWindow.on('clicked',this.deleteItem,this);
+        },this); /* end of .on('clicked') */
+        this.normalButtonList.push(rulesButton);
 
 
         //  If a Game Object is clicked on, this event is fired.
