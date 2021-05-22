@@ -34,6 +34,7 @@ export default class Player extends Actor {
           this.updatePatternHint();
         }
       }, this);
+      this.enemy = this.scene.npc;
 
       this.createPaternHint();
     }
@@ -70,108 +71,142 @@ export default class Player extends Actor {
         this.updatePatternHint();
     }
 
+    dealDamage(amount)
+    {
+        console.log('hit');
+        this.damage = amount;
+        this.enemy.health -= this.damage;
+        console.log(this.scene.npc.health);
+    }
+
+    patternAdvance()
+    {
+        console.log('advance');
+        this.sprite.play('stewiewalk');
+        this.sprite.flipX = false;
+        this.scene.tweens.add({
+            targets: this.sprite,
+            x: this.sprite.x + 75,
+            duration: 1000,
+            delay: 0,
+        });
+        this.x += 75;
+        this.scene.time.addEvent({ delay: 1000, callback: function() {
+            this.sprite.play('stewieidle');
+        }, callbackScope: this, loop: false });
+        this.comboString = "";
+    }
+
+    patternPunch()
+    {
+        console.log('attack punch');
+        this.sprite.play('stewiepunch');
+        this.sprite.flipX = false;
+        this.scene.manFight[(this.nextSfx++)%5].play();
+        console.log(this.x);
+        console.log(this.scene.npc.x);
+        console.log(this.scene.npc.x-this.x);
+        if(this.scene.npc.x - this.x <= 100){
+            this.dealDamage(2);
+        }
+        this.scene.time.addEvent({ delay: 1000, callback: function() {
+            this.sprite.play('stewieidle');
+        }, callbackScope: this, loop: false });
+        this.scene.npc.isAlive();
+        this.comboString = "";
+    }
+
+    patternKick()
+    {
+        console.log('attack kick');
+        this.sprite.play('stewiekick');
+        this.sprite.flipX = false;
+        this.scene.manFight[(this.nextSfx++)%5].play();
+        if(this.scene.npc.x - this.x <= 100){
+            this.dealDamage(3);
+        }
+        this.scene.time.addEvent({ delay: 1000, callback: function() {
+            this.sprite.play('stewieidle');
+        }, callbackScope: this, loop: false });
+        this.scene.npc.isAlive();
+        this.comboString = "";
+    }
+
+    patternRetreat()
+    {
+        console.log('retreat');
+        this.sprite.play('stewiewalk');
+        this.sprite.flipX = true;
+        this.x -= 75;
+        this.scene.tweens.add({
+            targets: this.sprite,
+            x: this.sprite.x - 75,
+            duration: 1000,
+            delay: 0,
+        });
+        this.scene.time.addEvent({ delay: 1000, callback: function() {
+            this.sprite.play('stewieidle');
+        }, callbackScope: this, loop: false });
+        this.comboString = "";
+    }
+
+    patternShield()
+    {
+        console.log('shield');
+        this.sprite.play('stewieshield');
+        this.sprite.flipX = false;
+        this.scene.manFight[(this.nextSfx++)%5].play();
+        this.scene.time.addEvent({ delay: 1000, callback: function() {
+            this.sprite.play('stewieidle');
+        }, callbackScope: this, loop: false });
+        this.comboString = "";
+    }
+
+    patternJump()
+    {
+        console.log('duck punch');
+        this.sprite.play('stewiejump');
+        this.sprite.flipX = false;
+        this.scene.manFight[(this.nextSfx++)%5].play();
+        this.comboString = "";
+        this.scene.time.addEvent({ delay: 1000, callback: function() {
+            this.sprite.play('stewieidle');
+        }, callbackScope: this, loop: false });
+    }
+
+    patternJumpKick()
+    {
+        console.log('jump kick');
+        this.sprite.play('stewiejumpkick');
+        this.sprite.flipX = false;
+        this.scene.manFight[(this.nextSfx++)%5].play();
+        if(this.scene.npc.x - this.x <= 100){
+            this.dealDamage(5);
+        }
+        this.scene.time.addEvent({ delay: 1000, callback: function() {
+            this.sprite.play('stewieidle');
+        }, callbackScope: this, loop: false });
+        this.scene.npc.isAlive();
+        this.comboString = "";
+    }
+
     patternCheck()
     {
         this.patterns = ["1112","1212","2121","2221","3334","2424","4434"];
         if(this.comboString == this.patterns[0]){
-          console.log('advance');
-          this.sprite.play('stewiewalk');
-          this.sprite.flipX = false;
-          this.scene.tweens.add({
-              targets: this.sprite,
-              x: this.sprite.x + 75,
-              duration: 1000,
-              delay: 0,
-          });
-          this.x += 75;
-          this.scene.time.addEvent({ delay: 1000, callback: function() {
-              this.sprite.play('stewieidle');
-          }, callbackScope: this, loop: false });
-          this.comboString = "";
+            this.patternAdvance();
         } else if(this.comboString == this.patterns[1]){
-          console.log('attack punch');
-          this.sprite.play('stewiepunch');
-          this.sprite.flipX = false;
-          this.scene.manFight[(this.nextSfx++)%5].play();
-          console.log(this.x);
-          console.log(this.scene.npc.x);
-          console.log(this.scene.npc.x-this.x);
-          if(this.scene.npc.x - this.x <= 100){
-            console.log('hit');
-            this.damage = 2;
-            this.scene.npc.health -= this.damage;
-            console.log(this.scene.npc.health);
-          }
-          this.scene.time.addEvent({ delay: 1000, callback: function() {
-              this.sprite.play('stewieidle');
-          }, callbackScope: this, loop: false });
-          this.scene.npc.isAlive();
-          this.comboString = "";
+            this.patternPunch();
         } else if(this.comboString == this.patterns[2]){
-          console.log('attack kick');
-          this.sprite.play('stewiekick');
-          this.sprite.flipX = false;
-          this.scene.manFight[(this.nextSfx++)%5].play();
-          if(this.scene.npc.x - this.x <= 100){
-            console.log('hit');
-            this.damage = 3;
-            this.scene.npc.health -= this.damage;
-            console.log(this.scene.npc.health);
-          }
-          this.scene.time.addEvent({ delay: 1000, callback: function() {
-              this.sprite.play('stewieidle');
-          }, callbackScope: this, loop: false });
-          this.scene.npc.isAlive();
-          this.comboString = "";
+            this.patternKick();
         } else if(this.comboString == this.patterns[3]){
-          console.log('retreat');
-          this.sprite.play('stewiewalk');
-          this.sprite.flipX = true;
-          this.x -= 75;
-          this.scene.tweens.add({
-              targets: this.sprite,
-              x: this.sprite.x - 75,
-              duration: 1000,
-              delay: 0,
-          });
-          this.scene.time.addEvent({ delay: 1000, callback: function() {
-              this.sprite.play('stewieidle');
-          }, callbackScope: this, loop: false });
-          this.comboString = "";
+            this.patternRetreat();
         } else if(this.comboString == this.patterns[4]){
-          console.log('shield');
-          this.sprite.play('stewieshield');
-          this.sprite.flipX = false;
-          this.scene.manFight[(this.nextSfx++)%5].play();
-          this.scene.time.addEvent({ delay: 1000, callback: function() {
-              this.sprite.play('stewieidle');
-          }, callbackScope: this, loop: false });
-          this.comboString = "";
+            this.patternShield();
         } else if(this.comboString == this.patterns[5]){
-          console.log('duck punch');
-          this.sprite.play('stewiejump');
-          this.sprite.flipX = false;
-          this.scene.manFight[(this.nextSfx++)%5].play();
-          this.comboString = "";
-          this.scene.time.addEvent({ delay: 1000, callback: function() {
-              this.sprite.play('stewieidle');
-          }, callbackScope: this, loop: false });
+            this.patternJump();
         } else if(this.comboString == this.patterns[6]){
-          console.log('jump kick');
-          this.sprite.play('stewiejumpkick');
-          this.sprite.flipX = false;
-          this.scene.manFight[(this.nextSfx++)%5].play();
-          if(this.scene.npc.x - this.x <= 100){
-            console.log('hit');
-            this.damage = 5;
-            this.scene.npc.health -= this.damage;
-            console.log(this.scene.npc.health);
-          }
-          this.scene.time.addEvent({ delay: 1000, callback: function() {
-              this.sprite.play('stewieidle');
-          }, callbackScope: this, loop: false });
-          this.scene.npc.isAlive();
-          this.comboString = "";
+            this.patternJumpKick();
         } else {
           console.log('invalid input');
           this.sprite.play('stewieidle');
