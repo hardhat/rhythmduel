@@ -280,8 +280,8 @@ export default class Player extends Actor {
         '1212': 'punch',
         '2121': 'kick',
         '2221': 'retreat',
-        '3334': 'jump',
-        '2424': 'duck',
+        '3334': 'block',
+        '2424': 'jump',
         '4434': 'jumpkick',
         };
 
